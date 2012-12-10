@@ -1,0 +1,38 @@
+#fqwgoqkiapwfgcyq
+import MySQLdb
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.api import users
+from google.appengine.ext import db
+
+class surveyusers(db.Model):
+    name = db.StringProperty(required=True)
+
+class MainPage(webapp.RequestHandler):
+    
+    su = surveyusers(name="john")
+    su.put()
+    
+    def get(self):
+        
+        
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write('''
+                                    <html>
+                                        <title>
+                                        </title>
+                                        <body>
+                                            <h1> Hello World!! </h1>
+                                        </body>
+                                    </html>
+                                ''')
+
+
+application = webapp.WSGIApplication([('/', MainPage)], debug=True)
+
+
+def main():
+    run_wsgi_app(application)
+
+if __name__ == "__main__":
+    main()

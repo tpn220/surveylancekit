@@ -1,0 +1,25 @@
+import webapp2
+import jinja2
+import os
+
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        url = 'http://www.google.com'
+        url_linktext = 'Google'
+        template_values = {
+            'greetings': "The simple things in life MAC makes it bad",
+            'url': url,
+            'url_linktext': url_linktext,
+        }
+
+        template = jinja_environment.get_template('index.html')
+        self.response.out.write(template.render(template_values))
+
+app = webapp2.WSGIApplication([('/', MainPage)],
+                              debug=True)
+
+if __name__ == '__main__':
+    pass

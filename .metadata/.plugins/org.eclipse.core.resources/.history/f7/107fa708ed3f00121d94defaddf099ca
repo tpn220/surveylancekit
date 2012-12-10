@@ -1,0 +1,38 @@
+#fqwgoqkiapwfgcyq
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.api import users
+from nyu.edu.surveyllancekit.impl import surveyusers
+
+class MainPage(webapp.RequestHandler):
+    
+    su1 = surveyusers.surveyuser(name="john1")
+    su1.put()
+    su2 = surveyusers.surveyuser(name="john2")
+    su2.put()
+    su3 = surveyusers.surveyuser(name="john3")
+    su3.put()
+    su4 = surveyusers.surveyuser(name="john4")
+    su4.put()
+    
+    def get(self):   
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write('''
+                                    <html>
+                                        <title>
+                                        </title>
+                                        <body>
+                                            <h1> Hello World!! </h1>
+                                        </body>
+                                    </html>
+                                ''')
+
+
+application = webapp.WSGIApplication([('/', MainPage)], debug=True)
+
+
+def main():
+    run_wsgi_app(application)
+
+if __name__ == "__main__":
+    main()

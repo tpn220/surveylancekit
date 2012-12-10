@@ -1,0 +1,45 @@
+#fqwgoqkiapwfgcyq
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.api import users
+from nyu.edu.surveyllancekit.impl import surveyusers
+from google.appengine.ext import db
+import jinja2
+import os
+
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+class MainPage(webapp.RequestHandler):
+    
+    def get(self):
+        sus = db.GqlQuery("SELECT * FROM surveyuser")
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write('''
+                                    <html>
+                                        <title>
+                                        </title>
+                                        <body>
+                                            <h1> Hello World!! </h1>
+                                ''')
+        for s in sus:
+            self.response.out.write(s.name)
+        self.response.out.write('''   
+                                        </body>
+                                    </html>
+                                ''')
+        
+        template_values = {
+            'greetings': "Hello",
+            'url': "abc.com",
+        }
+
+
+application = webapp.WSGIApplication([('/', MainPage)], debug=True)
+
+
+def main():
+    run_wsgi_app(application)
+
+if __name__ == "__main__":
+    main()

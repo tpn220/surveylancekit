@@ -1,0 +1,88 @@
+import webapp2
+import jinja2
+import os
+from google.appengine.ext import db
+from google.appengine.api import users
+import categories
+import surveyusers
+
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+
+class ManageCategory(webapp2.RequestHandler):
+    
+    def rendering(self, user):
+        parent_categories = db.GqlQuery('SELECT * FROM category where creator = \'%s\'' %user.nickname())
+                
+        greeting = ("Please select what you want to do: %s! (<a href=\"%s\">sign out</a>)\n" %
+                    (user.nickname(), users.create_logout_url("/")))
+        template_values = {
+                           'user' : user.nickname(),
+                           'greeting' :  greeting,
+                           'parent_categories' : parent_categories
+                           }
+        template = jinja_environment.get_template('managecategory.html')
+        self.response.out.write(template.render(template_values))
+                
+    def post(self):
+        user = users.get_current_user()
+        category_name = self.request.get('newcatname', 'None')
+        if category_name is not None:
+            new_category = categories.category(name=category_name, creator=user.nickname())
+            new_category.put()
+        self.rendering(user)
+    
+    def get(self):
+        user = users.get_current_user()  
+        if user:
+            function_type = self.request.get('function', 'None')
+            cat_name = self.request.get('cat_name', 'None')
+            item_name = self.request.get('item_name', 'None')
+            parent_user = surveyusers.surveyuser.get_by_key_name(user.user_id())
+            
+            if item_name is None:
+                if function_type == 'newcat':
+                    self.createNewCategory(user)
+                elif function_type == 'edit':
+                    self.editCategory(cat_name, user)
+                else:
+                    if function_type == 'delete':
+                        cat_to_delete_query = db.GqlQuery('SELECT * FROM category where creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
+                        cat_to_delete = cat_to_delete_query[0]
+                        cat_to_delete.delete()
+                
+                    self.rendering(user)
+            else:
+                if function_type == 'rename':
+                    self.renameItem(user, cat_name, item_name)
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
+            
+    def renameItem(self, user, cat_name, item_name):
+        item_to_rename_query = db.GqlQuery('SELECT * FROM item where name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), cat_name))
+        item_to_rename = item_to_rename_query[0]
+        item_to_rename.delete()
+            
+    def editCategory(self, cat_name, user):
+        category_items = db.GqlQuery('SELECT * FROM item where creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
+        
+        template_values = {
+                           'category' : cat_name,
+                           'category_items' : category_items
+                           }
+        template = jinja_environment.get_template('addnewcategory.html')
+        self.response.out.write(template.render(template_values))
+    
+    def createNewCategory(self, user):
+        template_values = {
+                           }
+        template = jinja_environment.get_template('addnewcategory.html')
+        self.response.out.write(template.render(template_values))
+    
+            
+app = webapp2.WSGIApplication([('/manage_category.*', ManageCategory)],
+                              debug=True)
+
+if __name__ == '__main__':
+    pass

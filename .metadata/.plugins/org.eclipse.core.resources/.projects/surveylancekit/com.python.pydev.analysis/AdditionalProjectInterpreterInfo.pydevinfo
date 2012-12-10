@@ -1,0 +1,48 @@
+-- VERSION_3
+-- START DISKCACHE
+/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/.metadata/.plugins/org.eclipse.core.resources/.projects/surveylancekit/com.python.pydev.analysis/v1_indexcache
+.v1_indexcache
+manage_category|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/manage_category.py
+-- END DISKCACHE
+-- START DICTIONARY
+11
+9=MainPage
+2=helloworld
+11=surveyuser
+8=category
+6=surveyusers
+5=items
+7=item
+4=categories
+3=manage_category
+1=homepage
+10=ManageCategory
+-- END DICTIONARY
+-- START TREE 1
+14
+app|3|app!11@application!19@app!27@
+cat|4|cat_to_delete!27@cat_name!27@category!33@cat_to_delete_query!27@
+cre|1|createNewCategory!26@
+del|1|deleteItem!26@
+edi|1|editCategory!26@
+fun|1|function_type!27@
+ite|2|item_name!27@item!41@
+jin|2|jinja_environment!27@jinja_environment!11@
+mai|3|MainPage!9@main!18@MainPage!17@
+man|1|ManageCategory!25@
+par|1|parent_user!27@
+ren|1|renameItem!26@
+sur|1|surveyuser!49@
+use|1|user!27@
+-- END TREE
+-- START TREE 2
+8
+cat|1|category!7&43@
+cre|2|creator!7&43@creator!8&35@
+del|0|
+edi|0|
+get|3|get!9&10@get!10&26@get!9&18@
+nam|3|name!11&51@name!7&43@name!8&35@
+pos|1|post!10&26@
+ren|1|rendering!10&26@
+-- END TREE

@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <body>
+  	<h1> {{ greeting }} </h1>
+  	<form name="categories" action="managecategory.html" method="get"> 
+  		{% for parent_category in parent_categories %}
+  			<h3> {{ parent_category.name }} <a href="managecategory.html?cat_name={{ parent_category.key_name }}"> Edit </a> <input type="submit" value="Delete"> </h3>
+  		{% endfor %}
+  		<input type="submit" value="Add New Category">
+  	</form>
+  </body>
+</html>

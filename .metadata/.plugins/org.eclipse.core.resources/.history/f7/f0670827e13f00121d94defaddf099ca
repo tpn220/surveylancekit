@@ -1,0 +1,40 @@
+#fqwgoqkiapwfgcyq
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.api import users
+#from nyu.edu.surveyllancekit.datastoremodels import surveyusers
+from google.appengine.ext import db
+
+
+class surveyuser(db.Model):
+    nick_name = db.StringProperty()
+    first_name = db.StringProperty()
+    last_name = db.StringProperty()
+
+class MainPage(webapp.RequestHandler):
+    
+    def get(self):
+        
+        e = surveyuser(nick_name="John")
+        e.put()
+        
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write('''
+                                    <html>
+                                        <title>
+                                        </title>
+                                        <body>
+                                            <h1> Hello World!! </h1>
+                                        </body>
+                                    </html>
+                                ''')
+
+
+application = webapp.WSGIApplication([('/', MainPage)], debug=True)
+
+
+def main():
+    run_wsgi_app(application)
+
+if __name__ == "__main__":
+    main()
