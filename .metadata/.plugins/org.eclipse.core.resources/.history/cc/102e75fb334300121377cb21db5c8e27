@@ -1,0 +1,79 @@
+import webapp2
+import jinja2
+import os
+import random
+from google.appengine.ext import db
+from google.appengine.api import users
+import categories
+import surveyusers
+import items
+import votes
+
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+class VoteCategory(webapp2.RequestHandler):
+    
+    def renderingVotePage(self, user):
+        all_categories = db.GqlQuery('SELECT * FROM category')
+        template_values = {
+                           'user' : user.nickname(),
+                           'all_categories' : all_categories
+                           }
+        template = jinja_environment.get_template('votecategory.html')
+        self.response.out.write(template.render(template_values))
+        
+    def post(self):
+        user = users.get_current_user()
+        winning_choice = self.request.post('voteforitem', None)
+        first_choice_item = self.request.post('firstchoiceitem', None)
+        second_choice_item = self.request.post('secondchoiceitem', None)
+        cat_name = self.request.post('cat_name', None)
+        category_query = db.GqlQuery('SELECT * FROM category WHERE name = \'%s\'' %cat_name)
+        category = category_query.get()
+        losing_choice = ''
+        
+        if winning_choice == first_choice_item:
+            losing_choice = first_choice_item
+        else:
+            losing_choice = second_choice_item
+            
+        new_vote = votes.vote(voter=user.nickname(), creator=category.creator(), category=cat_name, winner=winning_choice, loser=losing_choice)
+        new_vote.put()
+        
+        self.voteOnCategory(user, cat_name)
+    
+    def get(self):       
+        user = users.get_current_user()
+        
+        if user:
+            function_type = self.request.get('function', None)
+            cat_name = self.request.get('cat_name', None)
+            
+            if function_type == 'vote':
+                self.voteOnCategory(user, cat_name)
+            else:
+                self.renderingVotePage(user)
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
+            
+    def voteOnCategory(self, user, cat_name):
+        #to_vote_category_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
+        #to_vote_category = to_vote_category_query.get()
+        items_of_category_query = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
+        items_of_category = items_of_category_query.get()
+        items_choices = random.sample(items_of_category, 2)
+        
+        template_values = {
+                         'category' : cat_name,
+                         'item_choice_one' : items_choices[0],
+                         'item_choice_two' : items_choices[1]
+                         }
+        template = jinja_environment.get_template('placevotes.html')
+        self.response.out.write(template.render(template_values))
+            
+app = webapp2.WSGIApplication([('/vote_category.*', VoteCategory)],
+                              debug=True)
+
+if __name__ == '__main__':
+    pass

@@ -32,13 +32,19 @@ class ManageCategory(webapp2.RequestHandler):
         item_name = self.request.get('newitemname', None)
         if item_name is None:
             if new_cat_name is not None:
-                new_category = categories.category(name=new_cat_name, creator=user.nickname())
-                new_category.put()
+                check_if_cat_exists_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), new_cat_name))
+                check_if_cat_exists = check_if_cat_exists_query.get()
+                if not check_if_cat_exists:
+                    new_category = categories.category(name=new_cat_name, creator=user.nickname())
+                    new_category.put()
                 self.rendering(user)
         else:
             category_name = self.request.get('cat_name', None)
-            new_item = items.item(name=item_name, creator=user.nickname(), category=category_name)
-            new_item.put()
+            check_if_item_exists_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), category_name))
+            check_if_item_exists = check_if_item_exists_query.get()
+            if not check_if_item_exists:
+                new_item = items.item(name=item_name, creator=user.nickname(), category=category_name)
+                new_item.put()
             self.editCategory(category_name, user)
     
     def get(self):       
@@ -51,15 +57,14 @@ class ManageCategory(webapp2.RequestHandler):
             parent_user = surveyusers.surveyuser.get_by_key_name(user.user_id())
             
             if item_name is None:
-                if function_type == 'newcat':
-                    self.createNewCategory(user)
-                elif function_type == 'edit':
+                if function_type == 'edit':
                     self.editCategory(cat_name, user)
                 else:
                     if function_type == 'delete':
                         cat_to_delete_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
                         cat_to_delete = cat_to_delete_query.get()
-                        cat_to_delete.delete()
+                        if cat_to_delete:
+                            cat_to_delete.delete()
                 
                     self.rendering(user)
             else:
@@ -81,7 +86,8 @@ class ManageCategory(webapp2.RequestHandler):
     def deleteItem(self, user, cat_name, item_name):
         item_to_delete_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), cat_name))
         item_to_delete = item_to_delete_query.get()
-        item_to_delete.delete()
+        if item_to_delete:
+            item_to_delete.delete()
             
     def editCategory(self, cat_name, user):
         category_items = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
@@ -92,12 +98,6 @@ class ManageCategory(webapp2.RequestHandler):
                            'category_items' : category_items
                            }
         template = jinja_environment.get_template('editcategory.html')
-        self.response.out.write(template.render(template_values))
-    
-    def createNewCategory(self, user):
-        template_values = {
-                           }
-        template = jinja_environment.get_template('addnewcategory.html')
         self.response.out.write(template.render(template_values))
     
             

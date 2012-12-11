@@ -2,47 +2,71 @@
 -- START DISKCACHE
 /Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/.metadata/.plugins/org.eclipse.core.resources/.projects/surveylancekit/com.python.pydev.analysis/v1_indexcache
 .v1_indexcache
+surveyusers|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/surveyusers.py
+items|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/items.py
+votes|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/votes.py
+categories|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/categories.py
 manage_category|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/manage_category.py
+homepage|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/homepage.py
+vote_category|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylancekit/src/vote_category.py
 -- END DISKCACHE
 -- START DICTIONARY
-11
-9=MainPage
-2=helloworld
-11=surveyuser
-8=category
+14
+13=MainPage
+8=vote
+7=votes
+2=homepage
+12=VoteCategory
+3=vote_category
+11=ManageCategory
+14=surveyuser
+10=category
 6=surveyusers
 5=items
-7=item
+9=item
 4=categories
-3=manage_category
-1=homepage
-10=ManageCategory
+1=manage_category
 -- END DICTIONARY
 -- START TREE 1
-14
-app|3|app!11@application!19@app!27@
-cat|4|cat_to_delete!27@cat_name!27@category!33@cat_to_delete_query!27@
-cre|1|createNewCategory!26@
-del|1|deleteItem!26@
-edi|1|editCategory!26@
-fun|1|function_type!27@
-ite|2|item_name!27@item!41@
-jin|2|jinja_environment!27@jinja_environment!11@
-mai|3|MainPage!9@main!18@MainPage!17@
-man|1|ManageCategory!25@
-par|1|parent_user!27@
-ren|1|renameItem!26@
-sur|1|surveyuser!49@
-use|1|user!27@
--- END TREE
--- START TREE 2
-8
-cat|1|category!7&43@
-cre|2|creator!7&43@creator!8&35@
+19
+all|0|
+app|3|app!11@app!19@app!27@
+cat|2|category!33@cat_name!27@
+cre|1|creator_name!27@
 del|0|
 edi|0|
-get|3|get!9&10@get!10&26@get!9&18@
-nam|3|name!11&51@name!7&43@name!8&35@
-pos|1|post!10&26@
-ren|1|rendering!10&26@
+fun|1|function_type!27@
+get|0|
+ite|1|item!41@
+jin|3|jinja_environment!27@jinja_environment!11@jinja_environment!19@
+mai|1|MainPage!17@
+man|1|ManageCategory!9@
+par|0|
+ren|0|
+sur|1|surveyuser!49@
+tem|0|
+use|1|user!27@
+vo|0|
+vot|3|voteOnCategory!26@VoteCategory!25@vote!57@
+-- END TREE
+-- START TREE 2
+18
+app|0|
+cat|2|category!8&59@category!9&43@
+cre|3|creator!8&59@creator!9&43@creator!10&35@
+deb|0|
+del|1|deleteItem!11&10@
+edi|1|editCategory!11&10@
+fir|0|
+get|3|get!12&26@get!13&18@get!11&10@
+los|1|loser!8&59@
+nam|3|name!14&51@name!9&43@name!10&35@
+own|0|
+pos|2|post!12&26@post!11&10@
+ren|3|renameItem!11&10@rendering!11&10@renderingVotePage!12&26@
+sec|0|
+tem|0|
+vot|1|voter!8&59@
+wi|0|
+win|1|winner!8&59@
 -- END TREE

@@ -11,5 +11,7 @@ libraries:
 handlers:
 - url: /manage_category.*
   script: manage_category.app
+- url: /vote_category.*
+  script: vote_category.app
 - url: /.*
   script: homepage.app

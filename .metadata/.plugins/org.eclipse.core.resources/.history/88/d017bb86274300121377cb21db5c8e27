@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <body>
+  	<h1> {{ greeting }} </h1>
+  	{% for reg_user in reg_users %} 
+  		<b>{{ reg_user.name }}</b> present
+  		<br>
+  	{% endfor %}
+  	<a href="http://surveylancekit.appspot.com/manage_category"> Manage Your Categories </a>
+  	<a href="http://surveylancekit.appspot.com/vote_category"> Vote on Categories</a>
+  </body>
+</html>

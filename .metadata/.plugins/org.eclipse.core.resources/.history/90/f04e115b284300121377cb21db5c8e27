@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <body>
+  	<h1> List of All Categories you can Vote for, {{ user.nickname() }}</h1>
+  	<form name="vote_category" action="vote_category" method="get"> 
+  		{% for category in all_categories %}
+  			<h3> {{ category.name }}&nbsp&nbsp&nbsp&nbsp{{ category.creator }}&nbsp&nbsp<a href="manage_category?cat_name={{ parent_category.name }}&function=edit">Edit</a></h3>
+  		{% endfor %}
+  		<a href="manage_category?function=newcat">Add New Category</a>
+  	</form>
+  </body>
+</html>

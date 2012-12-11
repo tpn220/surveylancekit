@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <body>
+  	<h1> Please place your vote for category '{{ category }}' </h1>
+  	<form name="placevotes" action="vote_category" method="post"> 
+  			<input type="radio" name="voteforitem" value="{{ item_choice_one.name }}">{{ item_choice_one.name }}<br>
+  			<input type="radio" name="voteforitem" value="{{ item_choice_two.name }}">{{ item_choice_two.name }}<br>
+  			<input type="hidden" name = "firstchoiceitem" value="{{ item_choice_one.name }}">
+  			<input type="hidden" name = "secondchoiceitem" value="{{ item_choice_two.name }}">
+ 			<input type="submit" value="Vote!!">
+ 	</form>
+  </body>
+</html>

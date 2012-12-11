@@ -5441,3 +5441,71 @@ Binding(ALT+COMMAND+R,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY com.google.gwt.eclipse.core 4 0 2012-12-10 18:48:42.268
+!MESSAGE Unexpected Exception
+!STACK 1
+org.eclipse.core.runtime.CoreException: Launch configuration RemoteSystemsTempFiles Development references non-existing project RemoteSystemsTempFiles.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1397)
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1272)
+	at com.google.gwt.eclipse.core.launch.util.GWTJUnitLaunchUtils.setDefaults(GWTJUnitLaunchUtils.java:35)
+	at com.google.gwt.eclipse.core.launch.ui.GWTJUnitLaunchShortcut.createLaunchConfiguration(GWTJUnitLaunchShortcut.java:44)
+	at org.eclipse.jdt.junit.launcher.JUnitLaunchShortcut.findExistingLaunchConfigurations(JUnitLaunchShortcut.java:491)
+	at org.eclipse.jdt.junit.launcher.JUnitLaunchShortcut.getLaunchConfigurations(JUnitLaunchShortcut.java:429)
+	at org.eclipse.debug.internal.ui.launchConfigurations.LaunchShortcutExtension.getLaunchConfigurations(LaunchShortcutExtension.java:496)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.getParticipatingLaunchConfigurations(LaunchingResourceManager.java:493)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.getLabel(LaunchingResourceManager.java:322)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.computeLabels(LaunchingResourceManager.java:240)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager$2.run(LaunchingResourceManager.java:138)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.jdt.launching 4 107 2012-12-10 18:48:42.269
+!MESSAGE Launch configuration RemoteSystemsTempFiles Development references non-existing project RemoteSystemsTempFiles.
+
+!ENTRY com.google.gwt.eclipse.core 4 0 2012-12-10 18:48:42.271
+!MESSAGE Unexpected Exception
+!STACK 1
+org.eclipse.core.runtime.CoreException: Launch configuration RemoteSystemsTempFiles Production references non-existing project RemoteSystemsTempFiles.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1397)
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1272)
+	at com.google.gwt.eclipse.core.launch.util.GWTJUnitLaunchUtils.setDefaults(GWTJUnitLaunchUtils.java:35)
+	at com.google.gwt.eclipse.core.launch.ui.GWTJUnitLaunchShortcut.createLaunchConfiguration(GWTJUnitLaunchShortcut.java:44)
+	at com.google.gwt.eclipse.core.launch.ui.GWTJUnitWebLaunchShortcut.createLaunchConfiguration(GWTJUnitWebLaunchShortcut.java:31)
+	at org.eclipse.jdt.junit.launcher.JUnitLaunchShortcut.findExistingLaunchConfigurations(JUnitLaunchShortcut.java:491)
+	at org.eclipse.jdt.junit.launcher.JUnitLaunchShortcut.getLaunchConfigurations(JUnitLaunchShortcut.java:429)
+	at org.eclipse.debug.internal.ui.launchConfigurations.LaunchShortcutExtension.getLaunchConfigurations(LaunchShortcutExtension.java:496)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.getParticipatingLaunchConfigurations(LaunchingResourceManager.java:493)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.getLabel(LaunchingResourceManager.java:322)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.computeLabels(LaunchingResourceManager.java:240)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager$2.run(LaunchingResourceManager.java:138)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.jdt.launching 4 107 2012-12-10 18:48:42.271
+!MESSAGE Launch configuration RemoteSystemsTempFiles Production references non-existing project RemoteSystemsTempFiles.
+
+!ENTRY org.eclipse.jface 2 0 2012-12-10 19:51:27.890
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-10 19:51:27.890
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@55b65d07,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(com.python.pydev.analysis.actions.pyGlobalsBrowserWorkbench,Python Show Global Tokens (Global),
+		Python Show Global Tokens (Global),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3795a287,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.python.pydev.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.pyShowBrowser,Python Show Global Tokens (Editor),
+		Python Show Global Tokens (Editor),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@40e16993,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)

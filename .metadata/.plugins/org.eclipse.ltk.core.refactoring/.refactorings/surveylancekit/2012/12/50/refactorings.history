@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;surveylancekit/src/viewcategory.html&apos; to &apos;votecategory.html&apos;" description="Rename resource &apos;viewcategory.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/viewcategory.html" name="votecategory.html" stamp="1355186618636" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;surveylancekit/src/vote.py&apos; to &apos;votes.py&apos;" description="Rename resource &apos;vote.py&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/vote.py" name="votes.py" stamp="1355189481739" updateReferences="true"/>
+</session>

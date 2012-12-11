@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<script>
+			function validateForm() {
+				var x = document.forms["categories"]["newitemname"].value;
+				if (x == null || x == "") {
+					alert("New Item Name must be filled out");
+					return false;
+				}
+			}
+		</script>
+	</head>
+<body>
+  	<h1> List of items in category {{ category }} </h1>
+  	{% for category_item in category_items %}
+  		<h3> {{ category_item.name }} <a href="manage_category?item_name={{ category_item.name }}&cat_name={{ category }}&function=rename">Rename</a> <a href="manage_category?item_name={{ category_item.name }}&cat_name={{ category }}&function=delete">Delete</a> </h3>
+  	{% endfor %}
+  	<form name="categories" action="manage_category" onsubmit="return validateForm()" method="post"> 
+  		Add New Item : <input type="text" name="newitemname"> <input type="submit" value="Add Item">
+  		<input type="hidden" name = "cat_name" value="{{ category }}">
+  	</form>
+  </body>
+</html>
