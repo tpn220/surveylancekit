@@ -13,7 +13,7 @@ vote_category|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylanc
 -- START DICTIONARY
 14
 13=MainPage
-8=vote
+9=vote
 7=votes
 2=homepage
 12=VoteCategory
@@ -23,50 +23,39 @@ vote_category|0|/Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace/surveylanc
 10=category
 6=surveyusers
 5=items
-9=item
+8=item
 4=categories
 1=manage_category
 -- END DICTIONARY
 -- START TREE 1
-19
-all|0|
+15
 app|3|app!11@app!19@app!27@
 cat|2|category!33@cat_name!27@
 cre|1|creator_name!27@
 del|0|
 edi|0|
 fun|1|function_type!27@
-get|0|
 ite|1|item!41@
-jin|3|jinja_environment!27@jinja_environment!11@jinja_environment!19@
+jin|3|jinja_environment!19@jinja_environment!11@jinja_environment!27@
 mai|1|MainPage!17@
 man|1|ManageCategory!9@
 par|0|
 ren|0|
 sur|1|surveyuser!49@
-tem|0|
 use|1|user!27@
-vo|0|
 vot|3|voteOnCategory!26@VoteCategory!25@vote!57@
 -- END TREE
 -- START TREE 2
-18
-app|0|
-cat|2|category!8&59@category!9&43@
-cre|3|creator!8&59@creator!9&43@creator!10&35@
-deb|0|
+11
+cat|2|category!8&43@category!9&59@
+cre|3|creator!8&43@creator!9&59@creator!10&35@
 del|1|deleteItem!11&10@
 edi|1|editCategory!11&10@
-fir|0|
-get|3|get!12&26@get!13&18@get!11&10@
-los|1|loser!8&59@
-nam|3|name!14&51@name!9&43@name!10&35@
-own|0|
+get|3|get!11&10@get!12&26@get!13&18@
+los|1|loser!9&59@
+nam|3|name!14&51@name!10&35@name!8&43@
 pos|2|post!12&26@post!11&10@
-ren|3|renameItem!11&10@rendering!11&10@renderingVotePage!12&26@
-sec|0|
-tem|0|
-vot|1|voter!8&59@
-wi|0|
-win|1|winner!8&59@
+ren|3|renderingVotePage!12&26@renameItem!11&10@rendering!11&10@
+vot|1|voter!9&59@
+win|1|winner!9&59@
 -- END TREE

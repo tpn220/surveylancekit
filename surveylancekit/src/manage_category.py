@@ -6,6 +6,8 @@ from google.appengine.api import users
 import categories
 import surveyusers
 import items
+import votes
+import xml.etree.ElementTree as xml
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -30,6 +32,7 @@ class ManageCategory(webapp2.RequestHandler):
         user = users.get_current_user()
         new_cat_name = self.request.get('newcatname', None)
         item_name = self.request.get('newitemname', None)
+        import_cat_name = self.request.get('importcatname', None)
         if item_name is None:
             if new_cat_name is not None:
                 check_if_cat_exists_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), new_cat_name))
@@ -62,9 +65,20 @@ class ManageCategory(webapp2.RequestHandler):
                 else:
                     if function_type == 'delete':
                         cat_to_delete_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
+                        items_cat_to_delete_query = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
+                        votes_to_delete_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
+                        votes_to_delete = votes_to_delete_query.get()
                         cat_to_delete = cat_to_delete_query.get()
+                        items_cat_to_delete = items_cat_to_delete_query.get()
                         if cat_to_delete:
                             cat_to_delete.delete()
+                        if items_cat_to_delete:
+                            for item in items_cat_to_delete_query:
+                                item.delete()
+                        if votes_to_delete:
+                            for vote in votes_to_delete_query:
+                                vote.delete()
+                        
                 
                     self.rendering(user)
             else:
@@ -86,8 +100,16 @@ class ManageCategory(webapp2.RequestHandler):
     def deleteItem(self, user, cat_name, item_name):
         item_to_delete_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), cat_name))
         item_to_delete = item_to_delete_query.get()
+        votes_to_delete_winner_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND winner = \'%s\'' %(user.nickname(), cat_name, item_to_delete.name))        
+        votes_to_delete_loser_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND loser = \'%s\'' %(user.nickname(), cat_name, item_to_delete.name))
+        votes_to_delete_winner = votes_to_delete_winner_query.get()
+        votes_to_delete_loser = votes_to_delete_loser_query.get()
         if item_to_delete:
             item_to_delete.delete()
+        if votes_to_delete_winner:
+            votes_to_delete_winner.delete()
+        if votes_to_delete_loser:
+            votes_to_delete_loser.delete()
             
     def editCategory(self, cat_name, user):
         category_items = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))

@@ -2,12 +2,25 @@
 <section name="Workbench">
 	<section name="PydevSearchPage">
 		<item value="false" key="com.python.pydev.ui.search.pySearchPageCASE_SENSITIVE"/>
-		<item value="1" key="com.python.pydev.ui.search.pySearchPageHISTORY_SIZE"/>
+		<item value="2" key="com.python.pydev.ui.search.pySearchPageHISTORY_SIZE"/>
 		<item value="false" key="com.python.pydev.ui.search.pySearchPageSEARCH_DERIVED"/>
 		<item value="false" key="REG_EX_SEARCH"/>
-		<section name="com.python.pydev.ui.search.pySearchPageHISTORY0">
+		<section name="com.python.pydev.ui.search.pySearchPageHISTORY1">
 			<item value="false" key="isRegExSearch"/>
 			<item value="module" key="textPattern"/>
+			<item value="0" key="scope"/>
+			<item value="false" key="ignoreCase"/>
+			<list key="fileNamePatterns">
+				<item value="*.py"/>
+				<item value="*.pyw"/>
+				<item value="*.pyx"/>
+			</list>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="com.python.pydev.ui.search.pySearchPageHISTORY0">
+			<item value="false" key="isRegExSearch"/>
+			<item value="for" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<list key="fileNamePatterns">

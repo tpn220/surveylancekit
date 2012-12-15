@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 import random
+import logging
 from google.appengine.ext import db
 from google.appengine.api import users
 import categories
@@ -35,19 +36,20 @@ class VoteCategory(webapp2.RequestHandler):
         first_choice_item = self.request.get('firstchoiceitem', None)
         second_choice_item = self.request.get('secondchoiceitem', None)
         cat_name = self.request.get('cat_name', None)
-        category_query = db.GqlQuery('SELECT * FROM category WHERE name = \'%s\'' %cat_name)
+        creator_name = self.request.get('creator_name', None)
+        category_query = db.GqlQuery('SELECT * FROM category WHERE name = \'%s\' AND creator = \'%s\'' %(cat_name, creator_name))
         category = category_query.get()
         losing_choice = ''
         
         if winning_choice == first_choice_item:
-            losing_choice = first_choice_item
-        else:
             losing_choice = second_choice_item
-            
-        new_vote = votes.vote(voter=user.nickname(), creator=category.creator, category=cat_name, winner=winning_choice, loser=losing_choice)
+        else:
+            losing_choice = first_choice_item
+        
+        #logging.debug('USERRRR %s' %creator_name)    
+        new_vote = votes.vote(voter=user.nickname(), creator=creator_name, category=cat_name, winner=winning_choice, loser=losing_choice)
         new_vote.put()
-
-        self.voteOnCategory(user, cat_name, category.creator)
+        self.voteOnCategory(user, cat_name, creator_name)
     
     def get(self):       
         user = users.get_current_user()
@@ -69,6 +71,7 @@ class VoteCategory(webapp2.RequestHandler):
         #to_vote_category = to_vote_category_query.get()
         items_of_category = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(creator_name, cat_name))
         #items_of_category = items_of_category_query.get()
+        #logging.debug('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(creator_name, cat_name))
         rand_list = []
         for item in items_of_category:
             rand_list.append(item)
@@ -76,6 +79,7 @@ class VoteCategory(webapp2.RequestHandler):
         
         template_values = {
                          'category' : cat_name,
+                         'creator_name' : creator_name,
                          'item_choice_one' : items_choices[0],
                          'item_choice_two' : items_choices[1]
                          }
