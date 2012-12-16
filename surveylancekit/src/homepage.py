@@ -15,14 +15,14 @@ class MainPage(webapp2.RequestHandler):
         user = users.get_current_user()
         
         if user:
-            greeting = ("Welcome, %s! (<a href=\"%s\">sign out</a>)" %
-                        (user.nickname(), users.create_logout_url("/")))
+            greeting = ("Welcome, %s!" %user.nickname())
             if not surveyusers.surveyuser.get_by_key_name(user.user_id()): # WHERE name = :1', user.nickname()):
                 new_user = surveyusers.surveyuser(key_name=user.user_id(), name=user.nickname())
                 new_user.put()
             template_values = {
                                'user' : user.nickname(),
                                'greeting' :  greeting,
+                               'log_out_url' : users.create_logout_url("/"),
                                'reg_users': sus
                                }
             template = jinja_environment.get_template('index.html')

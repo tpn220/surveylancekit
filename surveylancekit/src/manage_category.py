@@ -7,7 +7,11 @@ import categories
 import surveyusers
 import items
 import votes
-import xml.etree.ElementTree as xml
+import logging
+try:
+    import xml.etree.cElementTree as ET
+except ImportError:
+    import xml.etree.ElementTree as ET
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -18,11 +22,9 @@ class ManageCategory(webapp2.RequestHandler):
     def rendering(self, user):
         parent_categories = db.GqlQuery('SELECT * FROM category where creator = \'%s\'' %user.nickname())
                 
-        greeting = ("Please select what you want to do: %s! (<a href=\"%s\">sign out</a>)\n" %
-                    (user.nickname(), users.create_logout_url("/")))
         template_values = {
                            'user' : user.nickname(),
-                           'greeting' :  greeting,
+                           'log_out_url' :  users.create_logout_url("/"),
                            'parent_categories' : parent_categories
                            }
         template = jinja_environment.get_template('managecategory.html')
@@ -32,7 +34,8 @@ class ManageCategory(webapp2.RequestHandler):
         user = users.get_current_user()
         new_cat_name = self.request.get('newcatname', None)
         item_name = self.request.get('newitemname', None)
-        import_cat_name = self.request.get('importcatname', None)
+        #import_cat_path = self.request.get('importcatpath', None)
+        #if import_cat_path is None:
         if item_name is None:
             if new_cat_name is not None:
                 check_if_cat_exists_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), new_cat_name))
@@ -49,6 +52,28 @@ class ManageCategory(webapp2.RequestHandler):
                 new_item = items.item(name=item_name, creator=user.nickname(), category=category_name)
                 new_item.put()
             self.editCategory(category_name, user)
+            #tree = xml.ElementTree()
+            
+        #    if category is not None:
+        #        parse_cat_name = rootElement.find("NAME")
+        #        items_list = category.findall("./CATEGORY/ITEM")
+        #        self.parseCategoryFromXML(user, parse_cat_name, items_list)
+                
+    
+    def parseCategoryFromXML(self, user, cat_name, items_list):
+        cat_to_parse_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
+        cat_to_parse = cat_to_parse_query.get()
+        if cat_to_parse:
+            print "yes"
+        else:
+            new_category = categories.category(name=cat_name, creator=user.nickname())
+            new_category.put()
+            for item in items_list:
+                new_item = items.item(name=item.attrib, creator=user.nickname(), category=cat_name)
+                new_item.put()
+                
+        self.rendering(user)
+                
     
     def get(self):       
         user = users.get_current_user()

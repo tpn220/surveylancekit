@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>A Subtle Beige by Bryant Smith</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/css/asubtlebeige.css" />
+	<style type="text/css">
+	<!--
+		body {
+		background-color: #000000;
+	}
+	-->
+	</style>
+	<script>
+		var whichSubmitButtonPressed
+		function validateForm() {
+			if whichSubmitButtonPressed == "add") {
+				var x = document.forms["categories"]["newcatname"].value;
+				if (x == null || x == "") {
+					alert("New Category Name must be filled out");
+					return false;
+				}
+				if(x.trim().length == 0) {
+					alert("New Category Name invalid!!");
+					return false;
+				}
+			}
+			else {
+				var x = document.forms["categories"]["importcatpath"].value;
+				if (x == null || x == "") {
+					alert("Path of XML File should be present");
+					return false;
+				}
+				if(x.trim().length == 0) {
+					alert("Path of XML File invalid!!");
+					return false;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title">SurveyLance Kit</div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="http://localhost:8080/manage_category">My Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="http://localhost:8080/vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="http://localhost:8080/view_results">Results</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">Welcome to SurveyLance Kit.</div>
+
+
+			<div class="articleContent">
+
+				<div class="rightLinks">
+					<div class="linkTitle">Links:</div>
+					<p class="links">
+						<a href="http://www.bryantsmith.com">Web Design</a><br /> <a
+							href="http://www.bryantsmith.com">Templates</a><br /> <a
+							href="http://www.bryantsmith.com">Marketing</a><br /> <a
+							href="http://www.bryantsmith.com">SEO</a><br /> <a
+							href="http://www.bryantsmith.com">Programming</a><br /> <a
+							href="http://www.bryantsmith.com">Consulting</a><br />
+					</p>
+				</div>
+				{% for parent_category in parent_categories %}
+				<h3> {{ parent_category.name }} <a href="manage_category?cat_name={{ parent_category.name }}&function=edit"><i><Edit/i></a> <a href="manage_category?cat_name={{ parent_category.name }}&function=delete">Delete</a> </h3>
+				{% endfor %}
+				<form name="categories" action="manage_category" onsubmit="return validateForm()" method="post"> 
+					<p>Add New Category : <input type="text" name="newcatname"> <input type="submit" onClick = "whichSubmitButtonPressed = add" value="Add Category"></input> </p>
+					<p>Import Category : <input type="text" name="importcatpath"> <input type="submit" onClick = "whichSubmitButtonPressed = parse" value="Import Category"></p>
+				</form>
+				<br />
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		<a href="http://www.aszx.net">developed by Tanvi Nabar for Open
+			Source Tools</a>
+	</div>
+
+</body>
+</html>

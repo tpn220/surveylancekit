@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>A Subtle Beige by Bryant Smith</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/css/asubtlebeige.css" />
+	<style type="text/css">
+	<!--
+		body {
+		background-color: #000000;
+	}
+	-->
+	</style>
+	<script>
+			function validateForm() {
+				var x = document.forms["categories"]["newitemname"].value;
+				if (x == null || x == "") {
+					alert("New Item Name must be filled out");
+					return false;
+				}
+				if(x.trim().length == 0) {
+					alert("New Item Name invalid!!");
+					return false;
+				}
+			}
+	</script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title">SurveyLance Kit</div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="http://localhost:8080/manage_category">Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="http://localhost:8080/vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="http://localhost:8080/view_results">Results</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">List of items in category {{ category }}</div>
+
+
+			<div class="articleContent">
+
+				<div class="rightLinks">
+					<div class="linkTitle">Links:</div>
+					<p class="links">
+						<a href="http://www.bryantsmith.com">Web Design</a><br /> <a
+							href="http://www.bryantsmith.com">Templates</a><br /> <a
+							href="http://www.bryantsmith.com">Marketing</a><br /> <a
+							href="http://www.bryantsmith.com">SEO</a><br /> <a
+							href="http://www.bryantsmith.com">Programming</a><br /> <a
+							href="http://www.bryantsmith.com">Consulting</a><br />
+					</p>
+				</div>
+				<table>
+					<tr>
+						<td><b> Category </b></td>
+					</tr>
+					{% for category_item in category_items %}
+					<tr>
+						<td>&nbsp&nbsp{{ category_item.name }}&nbsp&nbsp</td>
+						<td> <a href="manage_category?item_name={{ category_item.name }}&cat_name={{ category }}&function=rename">&nbsp&nbspRename&nbsp&nbsp</a> </td>
+						<td> <a href="manage_category?item_name={{ category_item.name }}&cat_name={{ category }}&function=delete">&nbsp&nbspDelete&nbsp&nbsp</a> </td>
+					</tr>
+					{% endfor %}
+				</table>
+				<br>
+				<br>
+				<form name="categories" action="manage_category" onsubmit="return validateForm()" method="post"> 
+  					Add New Item : <input type="text" name="newitemname"> <input type="submit" value="Add Item">
+  					<input type="hidden" name = "cat_name" value="{{ category }}">
+  				</form>
+				<br />
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		<a href="http://www.aszx.net">developed by Tanvi Nabar for Open
+			Source Tools</a>
+	</div>
+
+</body>
+</html>

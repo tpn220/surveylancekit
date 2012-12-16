@@ -1,0 +1,9 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <body>
+  	<h1> List of All Categories for Results</h1> 
+	{% for category in all_categories %}
+		<h3> {{ category.name }}&nbsp&nbsp&nbsp&nbsp{{ category.creator }}&nbsp&nbsp <a href="vote_category?cat_name={{ category.name }}&function=vote&creator_name={{ category.creator }}">Vote</a></h3>
+	{% endfor %}
+  </body>
+</html>

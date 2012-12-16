@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <body>
+  	<h1> Results for Category {{ cat_name }}</h1> 
+	<table border"1">
+		<tr align = "center">
+			<td>
+				<b>Item Name</b>
+			</td>
+			<td>
+				<b>Winning Votes</b>
+			</td>
+			<td>
+				<b>Losing Votes</b>
+			</td>
+		</tr>
+		{% for result in cat_results %}
+		<tr "center">
+			<td> 
+				{{ result.item.name }}
+			</td>
+			<td>
+				{{ result.winning }}
+			</td>
+			<td>
+				{{ result.losing }}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+  </body>
+</html>

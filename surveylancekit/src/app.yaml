@@ -9,9 +9,16 @@ libraries:
   version: latest
 
 handlers:
+- url: /images
+  static_dir: images
+- url: /css
+  static_dir: css
 - url: /manage_category.*
   script: manage_category.app
 - url: /vote_category.*
   script: vote_category.app
+- url: /view_results.*
+  script: view_results.app 
 - url: /.*
   script: homepage.app
+  

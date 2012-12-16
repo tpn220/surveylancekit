@@ -25,6 +25,7 @@ class VoteCategory(webapp2.RequestHandler):
         
         template_values = {
                            'user' : user.nickname(),
+                           'log_out_url' :  users.create_logout_url("/"),
                            'all_categories' : catsWithAtleastTwoItems
                            }
         template = jinja_environment.get_template('votecategory.html')
@@ -80,6 +81,7 @@ class VoteCategory(webapp2.RequestHandler):
         template_values = {
                          'category' : cat_name,
                          'creator_name' : creator_name,
+                         'log_out_url' :  users.create_logout_url("/"),
                          'item_choice_one' : items_choices[0],
                          'item_choice_two' : items_choices[1]
                          }

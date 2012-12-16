@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>SurveyLance Kit : Manage</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/css/asubtlebeige.css" />
+	<style type="text/css">
+	<!--
+		body {
+		background-color: #000000;
+	}
+	-->
+	</style>
+	<script>
+		var whichSubmitButtonPressed
+		function validateForm() {
+			if (whichSubmitButtonPressed == "add") {
+				var x = document.forms["categories"]["newcatname"].value;
+				if (x == null || x == "") {
+					alert("New Category Name must be filled out");
+					return false;
+				}
+				if(x.trim().length == 0) {
+					alert("New Category Name invalid!!");
+					return false;
+				}
+			}
+			else {
+				var x = document.forms["categories"]["importcatpath"].value;
+				if (x == null || x == "") {
+					alert("Path of XML File should be present");
+					return false;
+				}
+				if(x.trim().length == 0) {
+					alert("Path of XML File invalid!!");
+					return false;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title"><a href="/" style="color:#FAAC58">SurveyLance Kit</a></div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="manage_category">Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="view_results">Results</a>
+			</div>
+			<div class="menuLink">
+				<a href="{{ log_out_url }}">Log Out</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">Please select the required category and action </div>
+
+
+			<div class="articleContent">
+
+				<div class="rightLinks">
+					<div class="linkTitle">Links:</div>
+					<p class="links">
+						<a href="http://www.bryantsmith.com">Web Design</a><br /> <a
+							href="http://www.bryantsmith.com">Templates</a><br /> <a
+							href="http://www.bryantsmith.com">Marketing</a><br /> <a
+							href="http://www.bryantsmith.com">SEO</a><br /> <a
+							href="http://www.bryantsmith.com">Programming</a><br /> <a
+							href="http://www.bryantsmith.com">Consulting</a><br />
+					</p>
+				</div>
+				{% if parent_categories.count equals 0 %}
+					<p>
+						<i>Sorry, currently you have no categories created</i>
+					</p>
+				{% else %}
+					<table>
+						<tr>
+							<td><b> Category </b></td>
+						</tr>
+						{% for parent_category in parent_categories %}
+						<tr>
+							<td>&nbsp&nbsp{{ parent_category.name }}&nbsp&nbsp</td>
+							<td> <a href="manage_category?cat_name={{ parent_category.name }}&function=edit"><i>&nbsp&nbspEdit&nbsp&nbsp</i></a> </td>
+							<td> <a href="manage_category?cat_name={{ parent_category.name }}&function=delete"><i>&nbsp&nbspDelete&nbsp&nbsp</i></a> </td>
+						</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+				<br>
+				<br>
+				<form name="categories" action="manage_category" onsubmit="return validateForm()" method="post">
+			        <table border='0' width='50%'>
+			          <tr>
+			            <td valign='middle' align='center'>
+			              Add New Category
+			            </td>
+			            <td valign='middle' align='center'>
+			            	<input type="text" name="newcatname">
+			            </td>
+			            <td valign='middle' align='center'>
+			              <input type="submit" style="height: 50px; width: 50px" onClick = "whichSubmitButtonPressed = add" value="Add"></input> </p>
+			            </td>
+			          </tr>
+			          <tr>
+			            <td valign='middle' align='center'>
+			            	Import Category
+			            </td>
+			            <td valign='middle' align='center'>
+			            	<input type="text" name="importcatpath">
+			            </td>
+			            <td valign='middle' align='center'>
+			              <input type="submit" style="height: 50px; width: 50px" onClick = "whichSubmitButtonPressed = parse" value="Import"></p>
+			            </td>
+			          </tr>
+			        </table>
+			       </form>
+				<br />
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		<a href="http://www.aszx.net">developed by Tanvi Nabar for Open
+			Source Tools</a>
+	</div>
+
+</body>
+</html>

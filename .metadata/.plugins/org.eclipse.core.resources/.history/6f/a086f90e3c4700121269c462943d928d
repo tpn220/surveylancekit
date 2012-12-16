@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>A Subtle Beige by Bryant Smith</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/asubtlebeige.css" />
+<style type="text/css">
+<!--
+body {
+	background-color: #000000;
+}
+-->
+</style>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title">SurveyLance Kit</div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="http://localhost:8080/manage_category">Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="http://localhost:8080/vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="http://localhost:8080/view_results">Results</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">Welcome to SurveyLance Kit.</div>
+
+
+			<div class="articleContent">
+
+				<div class="rightLinks">
+					<div class="linkTitle">Links:</div>
+					<p class="links">
+						<a href="http://www.bryantsmith.com">Web Design</a><br /> <a
+							href="http://www.bryantsmith.com">Templates</a><br /> <a
+							href="http://www.bryantsmith.com">Marketing</a><br /> <a
+							href="http://www.bryantsmith.com">SEO</a><br /> <a
+							href="http://www.bryantsmith.com">Programming</a><br /> <a
+							href="http://www.bryantsmith.com">Consulting</a><br />
+					</p>
+				</div>
+				<p>Please Select what you want to do</p>
+				<br />
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		<a href="http://www.aszx.net">developed by Tanvi Nabar for Open
+			Source Tools</a>
+	</div>
+
+</body>
+</html>

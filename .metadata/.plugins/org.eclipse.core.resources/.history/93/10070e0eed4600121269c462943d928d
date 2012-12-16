@@ -1,0 +1,25 @@
+application: surveylancekit
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: jinja2
+  version: latest
+
+handlers:
+- url: /css/images
+  static_dir: css/images
+- url: /asubtlebeige.css
+  static_files: css/asubtlebeige.css
+  upload: cs//asubtlebeige.css
+- url: /manage_category.*
+  script: manage_category.app
+- url: /vote_category.*
+  script: vote_category.app
+- url: /view_results.*
+  script: view_results.app 
+- url: /.*
+  script: homepage.app
+  
