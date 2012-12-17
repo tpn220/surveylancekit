@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CATEGORY>
+  <NAME>Operating Systems</NAME>
+  <ITEM>
+    <NAME>ABC</NAME>
+  </ITEM>
+  <ITEM>
+    <NAME>Windows 8</NAME>
+  </ITEM>
+  <ITEM>
+    <NAME>Solaris</NAME>
+  </ITEM>
+  <ITEM>
+    <NAME>Linux</NAME>
+  </ITEM>
+</CATEGORY>

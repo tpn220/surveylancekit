@@ -42,7 +42,7 @@ class ViewResults(webapp2.RequestHandler):
         for item in items_of_cat_query:
             winning_votes_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND winner = \'%s\'' %(creator_name, cat_name, item.name))
             #winning_votes = winning_votes_query.get()
-            losing_votes_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND winner = \'%s\'' %(creator_name, cat_name, item.name))
+            losing_votes_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND loser = \'%s\'' %(creator_name, cat_name, item.name))
             #losing_votes = winning_votes_query.get()
             
             item_result = {

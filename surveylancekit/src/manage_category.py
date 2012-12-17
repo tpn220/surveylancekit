@@ -8,10 +8,8 @@ import surveyusers
 import items
 import votes
 import logging
-try:
-    import xml.etree.cElementTree as ET
-except ImportError:
-    import xml.etree.ElementTree as ET
+import urllib2
+import xml.etree.ElementTree as ET
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -34,46 +32,69 @@ class ManageCategory(webapp2.RequestHandler):
         user = users.get_current_user()
         new_cat_name = self.request.get('newcatname', None)
         item_name = self.request.get('newitemname', None)
-        #import_cat_path = self.request.get('importcatpath', None)
-        #if import_cat_path is None:
-        if item_name is None:
-            if new_cat_name is not None:
-                check_if_cat_exists_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), new_cat_name))
-                check_if_cat_exists = check_if_cat_exists_query.get()
-                if not check_if_cat_exists:
-                    new_category = categories.category(name=new_cat_name, creator=user.nickname())
-                    new_category.put()
-                self.rendering(user)
+        import_cat_path = self.request.get('importcatpath')
+        if import_cat_path is None:
+            if item_name is None:
+                if new_cat_name is not None:
+                    check_if_cat_exists_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), new_cat_name))
+                    check_if_cat_exists = check_if_cat_exists_query.get()
+                    if not check_if_cat_exists:
+                        new_category = categories.category(name=new_cat_name, creator=user.nickname())
+                        new_category.put()
+                    self.rendering(user)
+            else:
+                category_name = self.request.get('cat_name', None)
+                check_if_item_exists_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), category_name))
+                check_if_item_exists = check_if_item_exists_query.get()
+                if not check_if_item_exists:
+                    new_item = items.item(name=item_name, creator=user.nickname(), category=category_name)
+                    new_item.put()
+                self.editCategory(category_name, user)
         else:
-            category_name = self.request.get('cat_name', None)
-            check_if_item_exists_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), category_name))
-            check_if_item_exists = check_if_item_exists_query.get()
-            if not check_if_item_exists:
-                new_item = items.item(name=item_name, creator=user.nickname(), category=category_name)
-                new_item.put()
-            self.editCategory(category_name, user)
-            #tree = xml.ElementTree()
-            
-        #    if category is not None:
-        #        parse_cat_name = rootElement.find("NAME")
-        #        items_list = category.findall("./CATEGORY/ITEM")
-        #        self.parseCategoryFromXML(user, parse_cat_name, items_list)
-                
+            #fileName = open("/Users/tpn220/exp.xml","r")
+            tree=ET.parse(import_cat_path)
+            root = tree.getroot()
+            names = root.findall('NAME')
+            for name in names:
+                import_cat_name = name.text
+                items_list = []
+                items = root.findall('ITEM/NAME')
+                for item in items:
+                    import_item_name = item.text
+                    items_list.append(import_item_name)
+                self.parseCategoryFromXML(user, import_cat_name, items_list)
+    
     
     def parseCategoryFromXML(self, user, cat_name, items_list):
         cat_to_parse_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
         cat_to_parse = cat_to_parse_query.get()
-        if cat_to_parse:
-            print "yes"
+        if cat_to_parse: #replace old category
+            self.replaceCategory(user, cat_name, items_list)
         else:
             new_category = categories.category(name=cat_name, creator=user.nickname())
             new_category.put()
             for item in items_list:
-                new_item = items.item(name=item.attrib, creator=user.nickname(), category=cat_name)
+                new_item = items.item(name=item, creator=user.nickname(), category=cat_name)
                 new_item.put()
                 
         self.rendering(user)
-                
+     
+     
+    def replaceCategory(self, user, cat_name, items_list):
+        current_items = []
+        current_list_items_query = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
+        for item in current_list_items_query:
+            current_items.append(item.name)
+            
+        for item in current_items:
+            if item not in items_list:
+                self.deleteItem(user, cat_name, item)
+        
+        for item in items_list:
+            if item not in current_items:
+                new_item = items.item(name=item, creator=user.nickname(), category=cat_name)
+                new_item.put()
+                         
     
     def get(self):       
         user = users.get_current_user()
@@ -125,20 +146,17 @@ class ManageCategory(webapp2.RequestHandler):
     def deleteItem(self, user, cat_name, item_name):
         item_to_delete_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), cat_name))
         item_to_delete = item_to_delete_query.get()
-        votes_to_delete_winner_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND winner = \'%s\'' %(user.nickname(), cat_name, item_to_delete.name))        
-        votes_to_delete_loser_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND loser = \'%s\'' %(user.nickname(), cat_name, item_to_delete.name))
-        votes_to_delete_winner = votes_to_delete_winner_query.get()
-        votes_to_delete_loser = votes_to_delete_loser_query.get()
+        votes_to_delete_winner_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND winner = \'%s\'' %(user.nickname(), cat_name, item_name))        
+        votes_to_delete_loser_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\' AND loser = \'%s\'' %(user.nickname(), cat_name, item_name))
         if item_to_delete:
             item_to_delete.delete()
-        if votes_to_delete_winner:
-            votes_to_delete_winner.delete()
-        if votes_to_delete_loser:
-            votes_to_delete_loser.delete()
+        for votes in votes_to_delete_winner_query:
+            votes.delete()
+        for votes in votes_to_delete_loser_query:
+            votes.delete()
             
     def editCategory(self, cat_name, user):
         category_items = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
-        #self.response.write(category_items[0].name())
         
         template_values = {
                            'category' : cat_name,

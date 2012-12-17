@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>SurveyLance Kit : Edit</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/css/asubtlebeige.css" />
+	<style type="text/css">
+	<!--
+		body {
+		background-color: #000000;
+	}
+	-->
+	</style>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title"><a href="/" style="color:#FAAC58">SurveyLance Kit</a>t</div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="manage_category">Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="view_results">Results</a>
+			</div>
+			<div class="menuLink">
+				<a href="{{ log_out_url }}">Log Out</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">List of items in category {{ category }}</div>
+
+
+			<div class="articleContent">
+
+				<div class="rightLinks">
+					<div class="linkTitle">Links:</div>
+					<p class="links">
+						<a href="http://www.bryantsmith.com">Web Design</a><br /> <a
+							href="http://www.bryantsmith.com">Templates</a><br /> <a
+							href="http://www.bryantsmith.com">Marketing</a><br /> <a
+							href="http://www.bryantsmith.com">SEO</a><br /> <a
+							href="http://www.bryantsmith.com">Programming</a><br /> <a
+							href="http://www.bryantsmith.com">Consulting</a><br />
+					</p>
+				</div>
+				<table>
+					<tr>
+						<td><b> Category </b></td>
+					</tr>
+					{% for category_item in category_items %}
+					<tr>
+						<td>&nbsp&nbsp{{ category_item.name }}&nbsp&nbsp</td>
+						<td> <a href="manage_category?item_name={{ category_item.name }}&cat_name={{ category }}&function=rename"><i>&nbsp&nbspRename&nbsp&nbsp</i></a> </td>
+						<td> <a href="manage_category?item_name={{ category_item.name }}&cat_name={{ category }}&function=delete"><i>&nbsp&nbspDelete&nbsp&nbsp</i></a> </td>
+					</tr>
+					{% endfor %}
+				</table>
+				<br>
+				<br>
+				<form name="categories" action="manage_category" onsubmit="return validateForm()" method="post"> 
+  					Add New Item : <input type="text" name="newitemname"> <input type="submit" value="Add Item">
+  					<input type="hidden" name = "cat_name" value="{{ category }}">
+  				</form>
+				<br />
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		<a href="http://www.aszx.net">developed by Tanvi Nabar for Open
+			Source Tools</a>
+	</div>
+
+</body>
+</html>

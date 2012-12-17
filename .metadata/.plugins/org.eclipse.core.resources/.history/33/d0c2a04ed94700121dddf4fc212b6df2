@@ -1,0 +1,25 @@
+application: surveylancekit
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: jinja2
+  version: latest
+
+handlers:
+- url: /images
+  static_dir: images
+- url: /css
+  static_dir: css
+- url: /manage_category.*
+  script: manage_category.app
+- url: /vote_category.*
+  script: vote_category.app
+- url: /view_results.*
+  script: view_results.app 
+- url: /export_category.*
+  script: /export_category.app
+- url: /.*
+  script: homepage.app

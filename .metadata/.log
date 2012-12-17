@@ -5941,3 +5941,505 @@ java.lang.NullPointerException
 	at org.eclipse.jst.jsf.facelet.ui.internal.hover.FaceletHover.getHoverInfo(FaceletHover.java:58)
 	at org.eclipse.wst.sse.ui.internal.taginfo.BestMatchHover.getHoverInfo2(BestMatchHover.java:131)
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+!SESSION 2012-12-17 00:34:03.072 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.6.0_37
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/tpn220/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -data /Users/tpn220/Documents/Courses/OST/Eclipse WorkSpace -product org.eclipse.epp.package.jee.product -keyring /Users/tpn220/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2012-12-17 00:34:10.792
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2012-12-17 00:34:11.911
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:34:11.912
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@4aada4af,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@4e170376,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for COMMAND+\:
+Binding(COMMAND+\,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.uncomment,Python Uncomment,
+		Uncomments a python line (Removes # from the beggining of the line),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@620c40ce,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+Binding(COMMAND+\,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.remove.block.comment,Remove Block Comment,
+		Remove Block Comment,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@6c32c41c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_UP:
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.enclosing,Select Enclosing Element,
+		Expand selection to include enclosing element,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@57f7a5ab,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.selectEnclosingScope,Select Enclosing Scope,
+		Select Enclosing Scope,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1272c6ac,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for F3:
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.open.editor,Open Declaration,
+		Open an editor on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2d514faa,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.open.file.from.source,Open Selection,
+		Open an editor on the selected link,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@35453924,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.navigation.pyGoToDefinition,Python Go To Definition,
+		Goes to the definition of a python element,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@53aa85ce,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for COMMAND+O:
+Binding(COMMAND+O,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.quick_outline,Quick Outline,
+		Show the quick outline for the editor input,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@6036c24b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+O,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.pyShowOutline,Python Show Outline,
+		Show Outline,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2b0dfb46,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for COMMAND+SHIFT+P:
+Binding(COMMAND+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.goto.matching.bracket,Matching Character,
+		Go to Matching Character,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@55f56157,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+P,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.goToMatchingBracket,Go to Matching Bracket,
+		Go to Matching Bracket,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@22ebc6bf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for COMMAND+/:
+Binding(COMMAND+/,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.togglecomment,Python Toggle Comment,
+		Toggles comments of python line/s (Adds/Removes # at beggining of the line),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@25453782,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+Binding(COMMAND+/,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.add.block.comment,Add Block Comment,
+		Add Block Comment,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@73908404,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_DOWN:
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.last,Restore Last Selection,
+		Restore last selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@c77d0d6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.deselectEnclosingScope,Deselect Enclosing Scope,
+		Deselect Enclosing Scope,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@633f4aeb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for COMMAND+SHIFT+ARROW_UP:
+Binding(COMMAND+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.wst.xml.ui.previousSibling,Previous Sibling,
+		Go to Previous Sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@52edfb95,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.navigation.previousMethod,Previous Method or Class,
+		Navigates to the previous method or class definition,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@504fbd34,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F:
+Binding(COMMAND+SHIFT+F,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.format.document,Format,
+		Format selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@590aeb1f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+F,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.pyFormatStd,Python Format Code,
+		Format Code,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@230eca1d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:06.524
+!MESSAGE A conflict occurred for COMMAND+SHIFT+ARROW_DOWN:
+Binding(COMMAND+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.wst.xml.ui.nextSibling,Next Sibling,
+		Go to Next Sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@742af131,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.navigation.nextMethod,Next Method or Class,
+		Navigates to the next method or class definition,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1ff747e6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+
+!ENTRY org.eclipse.jface 2 0 2012-12-17 00:53:07.434
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 00:53:07.434
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2753d864,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(com.python.pydev.analysis.actions.pyGlobalsBrowserWorkbench,Python Show Global Tokens (Global),
+		Python Show Global Tokens (Global),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@71a3a167,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.python.pydev.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.pyShowBrowser,Python Show Global Tokens (Editor),
+		Python Show Global Tokens (Editor),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2db9ab7a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SESSION 2012-12-17 01:17:12.399 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/tpn220/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/tpn220/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2012-12-17 01:34:05.834
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2012-12-17 01:34:07.600
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 01:34:07.600
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1e50968c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3ccbd0e0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE A conflict occurred for COMMAND+\:
+Binding(COMMAND+\,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.uncomment,Python Uncomment,
+		Uncomments a python line (Removes # from the beggining of the line),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@33143cbd,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+Binding(COMMAND+\,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.remove.block.comment,Remove Block Comment,
+		Remove Block Comment,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2c135fe7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_UP:
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.enclosing,Select Enclosing Element,
+		Expand selection to include enclosing element,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@33720a43,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.selectEnclosingScope,Select Enclosing Scope,
+		Select Enclosing Scope,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@759fb67d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE A conflict occurred for F3:
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.open.editor,Open Declaration,
+		Open an editor on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@488604df,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.open.file.from.source,Open Selection,
+		Open an editor on the selected link,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@56a9f1ab,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.navigation.pyGoToDefinition,Python Go To Definition,
+		Goes to the definition of a python element,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@2f393e00,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE A conflict occurred for COMMAND+O:
+Binding(COMMAND+O,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.quick_outline,Quick Outline,
+		Show the quick outline for the editor input,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@57158a38,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+O,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.pyShowOutline,Python Show Outline,
+		Show Outline,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@47258f32,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE A conflict occurred for COMMAND+SHIFT+P:
+Binding(COMMAND+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.goto.matching.bracket,Matching Character,
+		Go to Matching Character,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@47a90bd5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+P,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.goToMatchingBracket,Go to Matching Bracket,
+		Go to Matching Bracket,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@72dc401b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE A conflict occurred for COMMAND+/:
+Binding(COMMAND+/,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.togglecomment,Python Toggle Comment,
+		Toggles comments of python line/s (Adds/Removes # at beggining of the line),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@59f4e786,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+Binding(COMMAND+/,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.add.block.comment,Add Block Comment,
+		Add Block Comment,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@5bd38b39,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.451
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_DOWN:
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.structure.select.last,Restore Last Selection,
+		Restore last selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@65a0596,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.deselectEnclosingScope,Deselect Enclosing Scope,
+		Deselect Enclosing Scope,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@5d8c3c8d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.452
+!MESSAGE A conflict occurred for COMMAND+SHIFT+ARROW_UP:
+Binding(COMMAND+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.wst.xml.ui.previousSibling,Previous Sibling,
+		Go to Previous Sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@40e05388,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.navigation.previousMethod,Previous Method or Class,
+		Navigates to the previous method or class definition,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@21db7cf6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.452
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F:
+Binding(COMMAND+SHIFT+F,
+	ParameterizedCommand(Command(org.eclipse.wst.sse.ui.format.document,Format,
+		Format selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@4a620c18,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+F,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.pyFormatStd,Python Format Code,
+		Format Code,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@50e90bd7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 03:02:09.452
+!MESSAGE A conflict occurred for COMMAND+SHIFT+ARROW_DOWN:
+Binding(COMMAND+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.wst.xml.ui.nextSibling,Next Sibling,
+		Go to Next Sibling,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@ff36af4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(COMMAND+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.navigation.nextMethod,Next Method or Class,
+		Navigates to the next method or class definition,
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@740879c0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
+
+!ENTRY org.eclipse.jface 2 0 2012-12-17 04:39:52.490
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-12-17 04:39:52.491
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3398042e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(com.python.pydev.analysis.actions.pyGlobalsBrowserWorkbench,Python Show Global Tokens (Global),
+		Python Show Global Tokens (Global),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@413a8278,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.python.pydev.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.python.pydev.editor.actions.pyShowBrowser,Python Show Global Tokens (Editor),
+		Python Show Global Tokens (Editor),
+		Category(org.python.pydev.ui.category.source,PyDev - Editor,PyDev editor category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@684bb5bc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.python.pydev.ui.editor.scope,,,system)
