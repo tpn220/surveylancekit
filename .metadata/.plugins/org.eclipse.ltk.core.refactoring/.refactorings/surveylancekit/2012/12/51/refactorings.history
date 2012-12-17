@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;surveylancekit/src/css/asubtlebeige.css&apos; to &apos;backGroundStyle.css&apos;" description="Rename resource &apos;asubtlebeige.css&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/css/asubtlebeige.css" name="backGroundStyle.css" stamp="1355704185196" updateReferences="true"/>
+</session>

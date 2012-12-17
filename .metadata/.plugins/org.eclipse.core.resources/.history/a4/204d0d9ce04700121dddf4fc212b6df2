@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>SurveyLance Kit : Place Vote</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/css/asubtlebeige.css" />
+	<style type="text/css">
+	<!--
+		body {
+		background-color: #000000;
+	}
+	-->
+	</style>
+	<script>
+		function validateForm() {
+			var radioButtons=document.forms["placevotes"]["voteforitem"]
+			for (var i=0; i<radioButtons.length; i++)
+		    {
+		        //Check if option is checked
+		        if (radioButtons[i].checked)
+		        {
+		            //Return value of the checked radio button
+		            return true;
+		        }
+		    }
+			alert("Please place a vote!!");
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title"><a href="/" style="color:#FAAC58">SurveyLance Kit</a></div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="manage_category">Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="view_results">Results</a>
+			</div>
+			<div class="menuLink">
+				<a href="export_category">Export</a>
+			</div>
+			<div class="menuLink">
+				<a href="{{ log_out_url }}">Log Out</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">Please place your vote for category '{{ category }}'</div>
+
+
+			<div class="articleContent">
+
+				<div class="rightLinks">
+					<div class="linkTitle">Links:</div>
+					<p class="links">
+						<a href="http://www.bryantsmith.com">Web Design</a><br /> <a
+							href="http://www.bryantsmith.com">Templates</a><br /> <a
+							href="http://www.bryantsmith.com">Marketing</a><br /> <a
+							href="http://www.bryantsmith.com">SEO</a><br /> <a
+							href="http://www.bryantsmith.com">Programming</a><br /> <a
+							href="http://www.bryantsmith.com">Consulting</a><br />
+					</p>
+				</div>
+				<table>
+					<form name="placevotes" onsubmit="return validateForm()" action="vote_category" method="post"> 
+			  			<tr> 
+			  				<input type="radio" name="voteforitem" value="{{ item_choice_one.name }}">{{ item_choice_one.name }}
+			  			</tr>
+			  			<br>
+			  			<tr> 
+			  				<input type="radio" name="voteforitem" value="{{ item_choice_two.name }}">{{ item_choice_two.name }}
+			  			</tr>
+			  			<input type="hidden" name = "firstchoiceitem" value="{{ item_choice_one.name }}">
+			  			<input type="hidden" name = "secondchoiceitem" value="{{ item_choice_two.name }}">
+			  			<input type="hidden" name = "cat_name" value="{{ category }}">
+			  			<input type="hidden" name = "creator_name" value="{{ creator_name }}">
+			 			<br>
+			 			<tr>
+			 				<input type="submit" value="Vote!!">
+			 			</tr>
+	 				</form>
+				</table>
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		<a href="http://www.aszx.net">developed by Tanvi Nabar for Open
+			Source Tools</a>
+	</div>
+
+</body>
+</html>

@@ -8,15 +8,18 @@ import surveyusers
 import items
 import votes
 import logging
-import urllib2
 import xml.etree.ElementTree as ET
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
+#the module that displays the different categories belonging to a user, and various functions that the user can perform, such as editting and deleting the category
+#as well as adding new categories and exporting from existing categories in the form of an XML file
+
 class ManageCategory(webapp2.RequestHandler):
     
+    #renders the list of all categories belonging to the logged in user
     def rendering(self, user):
         parent_categories = db.GqlQuery('SELECT * FROM category where creator = \'%s\'' %user.nickname())
                 
@@ -32,45 +35,46 @@ class ManageCategory(webapp2.RequestHandler):
         user = users.get_current_user()
         new_cat_name = self.request.get('newcatname', None)
         item_name = self.request.get('newitemname', None)
-        import_cat_path = self.request.get('importcatpath')
+        import_cat_path = self.request.get('importcatpath', None)
         if import_cat_path is None:
             if item_name is None:
-                if new_cat_name is not None:
+                if new_cat_name is not None: #new category is to be added
                     check_if_cat_exists_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), new_cat_name))
                     check_if_cat_exists = check_if_cat_exists_query.get()
-                    if not check_if_cat_exists:
+                    if not check_if_cat_exists: #checks if the category already exists in the datastore, if not then adds it
                         new_category = categories.category(name=new_cat_name, creator=user.nickname())
                         new_category.put()
                     self.rendering(user)
             else:
-                category_name = self.request.get('cat_name', None)
+                category_name = self.request.get('cat_name', None) #new item to be added
                 check_if_item_exists_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), category_name))
                 check_if_item_exists = check_if_item_exists_query.get()
-                if not check_if_item_exists:
+                if not check_if_item_exists: #checks if the category already has that item, if not then adds it
                     new_item = items.item(name=item_name, creator=user.nickname(), category=category_name)
                     new_item.put()
                 self.editCategory(category_name, user)
-        else:
-            #fileName = open("/Users/tpn220/exp.xml","r")
+        else: #Existing category is to be imported from the given file
             tree=ET.parse(import_cat_path)
             root = tree.getroot()
             names = root.findall('NAME')
             for name in names:
                 import_cat_name = name.text
                 items_list = []
-                items = root.findall('ITEM/NAME')
-                for item in items:
+                root_items = root.findall('ITEM/NAME')
+                for item in root_items:
                     import_item_name = item.text
+                    #logging.debug("new list %s" %item.text)
                     items_list.append(import_item_name)
                 self.parseCategoryFromXML(user, import_cat_name, items_list)
+            del tree
     
-    
+    #parses the given category details and makes changes/ adds new category accordingly
     def parseCategoryFromXML(self, user, cat_name, items_list):
         cat_to_parse_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
         cat_to_parse = cat_to_parse_query.get()
         if cat_to_parse: #replace old category
             self.replaceCategory(user, cat_name, items_list)
-        else:
+        else: #create new category
             new_category = categories.category(name=cat_name, creator=user.nickname())
             new_category.put()
             for item in items_list:
@@ -79,20 +83,24 @@ class ManageCategory(webapp2.RequestHandler):
                 
         self.rendering(user)
      
-     
+    #if category already exists, keep the common items, delete the ones in the previous version that are not there in the new
+    #and add those that are present in the new version 
     def replaceCategory(self, user, cat_name, items_list):
         current_items = []
         current_list_items_query = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
-        for item in current_list_items_query:
-            current_items.append(item.name)
+        for item_name in current_list_items_query:
+            #logging.debug("current list %s" %item_name.name)
+            current_items.append(item_name.name)
             
-        for item in current_items:
-            if item not in items_list:
-                self.deleteItem(user, cat_name, item)
+        for item_name in current_items:
+            if item_name not in items_list: #items in the previous version not present in the new (to be deleted)
+                #logging.debug("delete %s" %item_name)
+                self.deleteItem(user, cat_name, item_name)
         
-        for item in items_list:
-            if item not in current_items:
-                new_item = items.item(name=item, creator=user.nickname(), category=cat_name)
+        for item_name in items_list:
+            if item_name not in current_items: #items in the new version not present in the old (to be added)
+                #logging.debug("add %s" %item_name)
+                new_item = items.item(name=item_name, creator=user.nickname(), category=cat_name)
                 new_item.put()
                          
     
@@ -105,11 +113,11 @@ class ManageCategory(webapp2.RequestHandler):
             item_name = self.request.get('item_name', None)
             parent_user = surveyusers.surveyuser.get_by_key_name(user.user_id())
             
-            if item_name is None:
-                if function_type == 'edit':
+            if item_name is None: #functions refer to categories as a whole
+                if function_type == 'edit': #category is to be edited to add new items or delete/rename them
                     self.editCategory(cat_name, user)
                 else:
-                    if function_type == 'delete':
+                    if function_type == 'delete': #category is to be deleted, so delete ALL items and votes associated (if present)
                         cat_to_delete_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
                         items_cat_to_delete_query = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
                         votes_to_delete_query = db.GqlQuery('SELECT * FROM vote WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
@@ -127,22 +135,24 @@ class ManageCategory(webapp2.RequestHandler):
                         
                 
                     self.rendering(user)
-            else:
-                if function_type == 'rename':
+            else:#functions refer to items in a category
+                if function_type == 'rename': #item is to be renamed
                     self.renameItem(user, cat_name, item_name)
-                elif function_type == 'delete':
+                elif function_type == 'delete': #item is to be deleted
                     self.deleteItem(user, cat_name, item_name)
                 self.editCategory(cat_name, user)
         else:
             self.redirect(users.create_login_url(self.request.uri))
             
+    #function to rename the item in the datastore
     def renameItem(self, user, cat_name, item_name):
         item_to_rename_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), cat_name))
         item_to_rename = item_to_rename_query.get()
         item_to_rename.name = 'ABC'
         item_to_rename.put()
         
-            
+   
+   #function to delete the item in the datastore, along with ALL votes associated(if any)         
     def deleteItem(self, user, cat_name, item_name):
         item_to_delete_query = db.GqlQuery('SELECT * FROM item WHERE name = \'%s\' AND creator = \'%s\' AND category = \'%s\'' %(item_name, user.nickname(), cat_name))
         item_to_delete = item_to_delete_query.get()
@@ -155,6 +165,7 @@ class ManageCategory(webapp2.RequestHandler):
         for votes in votes_to_delete_loser_query:
             votes.delete()
             
+    #displays the list of all categories with the option to perform a function on them
     def editCategory(self, cat_name, user):
         category_items = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(user.nickname(), cat_name))
         

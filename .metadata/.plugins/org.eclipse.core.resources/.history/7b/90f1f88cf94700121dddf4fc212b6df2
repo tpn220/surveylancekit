@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>SurveyLance Kit : Edit</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/css/backGroundStyle.css" />
+	<style type="text/css">
+	<!--
+		body {
+		background-color: #000000;
+	}
+	-->
+	</style>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title"><a href="/" style="color:#FAAC58">SurveyLance Kit</a></div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="manage_category">Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="view_results">Results</a>
+			</div>
+			<div class="menuLink">
+				<a href="export_category">Export</a>
+			</div>
+			<div class="menuLink">
+				<a href="{{ log_out_url }}">Log Out</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">List of Categories to Export</div>
+
+
+			<div class="articleContent">
+
+				<table>
+					<tr>
+						<td><b> Category </b></td>
+					</tr>
+					{% for category in all_categories %}
+					<tr>
+						<td>&nbsp&nbsp{{ category.name }}&nbsp&nbsp</td>
+						<td> <a href="export_category?cat_name={{ category.name }}&function=export"><i>&nbsp&nbspExport&nbsp&nbsp</i></a> </td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		developed by Tanvi Nabar for Open Source Tools
+	</div>
+
+</body>
+</html>

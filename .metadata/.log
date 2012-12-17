@@ -6443,3 +6443,6 @@ Binding(COMMAND+SHIFT+T,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.python.pydev.ui.editor.scope,,,system)
+
+!ENTRY org.eclipse.core.resources 4 376 2012-12-17 07:58:33.238
+!MESSAGE Marker id 7589 not found.

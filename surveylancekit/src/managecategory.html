@@ -4,7 +4,7 @@
 	<title>SurveyLance Kit : Manage</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="/css/asubtlebeige.css" />
+	<link rel="stylesheet" type="text/css" href="/css/backGroundStyle.css" />
 	<style type="text/css">
 	<!--
 		body {
@@ -13,7 +13,6 @@
 	-->
 	</style>
 	<script>
-		var whichSubmitButtonPressed
 		function validateForm() {
 			if (whichSubmitButtonPressed == "add") {
 				var x = document.forms["categories"]["newcatname"].value;
@@ -69,17 +68,6 @@
 
 			<div class="articleContent">
 
-				<div class="rightLinks">
-					<div class="linkTitle">Links:</div>
-					<p class="links">
-						<a href="http://www.bryantsmith.com">Web Design</a><br /> <a
-							href="http://www.bryantsmith.com">Templates</a><br /> <a
-							href="http://www.bryantsmith.com">Marketing</a><br /> <a
-							href="http://www.bryantsmith.com">SEO</a><br /> <a
-							href="http://www.bryantsmith.com">Programming</a><br /> <a
-							href="http://www.bryantsmith.com">Consulting</a><br />
-					</p>
-				</div>
 				{% if not parent_categories %}
 					<p>
 						<i>Sorry, currently you have no categories created</i>
@@ -110,7 +98,7 @@
 			            	<input type="text" name="newcatname">
 			            </td>
 			            <td valign='middle' align='center'>
-			              <input type="submit" style="height: 50px; width: 50px" onClick = "whichSubmitButtonPressed = add" value="Add"></input> </p>
+			              <input type="submit" style="height: 50px; width: 50px" onClick = "whichSubmitButtonPressed = add;" value="Add"></input> </p>
 			            </td>
 			          </tr>
 			          <tr>
@@ -134,8 +122,7 @@
 
 	</div>
 	<div id="footer">
-		<a href="http://www.aszx.net">developed by Tanvi Nabar for Open
-			Source Tools</a>
+		developed by Tanvi Nabar for Open Source Tools
 	</div>
 
 </body>

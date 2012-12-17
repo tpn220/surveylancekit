@@ -14,24 +14,25 @@ import xml.etree.ElementTree as ET
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+# Module to export a category to an xml file
+
 class ExportCategory(webapp2.RequestHandler):
     
     def get(self):       
         user = users.get_current_user()
           
-        if user:
+        if user: #checks if user is logged in
             function_type = self.request.get('function', None)
-            
-            if function_type == "export":
-                root = ET.Element('root')
-                child = ET.Element('child')
-                root.append(child)
-                child.attrib['name'] = "Charlie"
-                file = open("test.xml", 'w')
-                ET.ElementTree(root).write(file)
-                file.close() 
+            cat_name = self.request.get('cat_name', None)
+            creator = self.request.get('creator', None)
+            if function_type == "export": #if category to be exported is selected
+                #category_query = db.GqlQuery('SELECT * FROM category WHERE name = \'%s\' AND creator = \'%s\'' %(cat_name, creator))
+                xml='<?xml version="1.0" encoding="UTF-8"?>\n<site>\n'
+                xml = xml + '</site>'
+                self.response.headers['Content-Type']='text/xml; charset=utf-8'
+                self.response.out.write(xml)
                 
-            all_categories = db.GqlQuery('SELECT * FROM category')
+            all_categories = db.GqlQuery('SELECT * FROM category') #display all categories that the user can export
             template_values = {
                            'user' : user.nickname(),
                            'log_out_url' :  users.create_logout_url("/"),

@@ -2,23 +2,21 @@ import webapp2
 import jinja2
 import os
 import random
-import logging
 from google.appengine.ext import db
 from google.appengine.api import users
-import categories
-import surveyusers
-import items
 import votes
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+#the Module that captures votes (winning and losing) on different items in categories. Any user is allowed to vote
 
 class VoteCategory(webapp2.RequestHandler):
     
     def renderingVotePage(self, user):
         all_categories = db.GqlQuery('SELECT * FROM category')
         catsWithAtleastTwoItems = []
-        for category in all_categories:
+        for category in all_categories: #only display those categories that have more than two items
             items_of_category = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(category.creator, category.name))
             if items_of_category.count() >= 2:
                 catsWithAtleastTwoItems.append(category)
@@ -33,7 +31,7 @@ class VoteCategory(webapp2.RequestHandler):
         
     def post(self):
         user = users.get_current_user()
-        winning_choice = self.request.get('voteforitem', None)
+        winning_choice = self.request.get('voteforitem', None) #choice the user voted in
         first_choice_item = self.request.get('firstchoiceitem', None)
         second_choice_item = self.request.get('secondchoiceitem', None)
         cat_name = self.request.get('cat_name', None)
@@ -42,12 +40,11 @@ class VoteCategory(webapp2.RequestHandler):
         category = category_query.get()
         losing_choice = ''
         
-        if winning_choice == first_choice_item:
+        if winning_choice == first_choice_item: #determine which item was chosen
             losing_choice = second_choice_item
         else:
             losing_choice = first_choice_item
         
-        #logging.debug('USERRRR %s' %creator_name)    
         new_vote = votes.vote(voter=user.nickname(), creator=creator_name, category=cat_name, winner=winning_choice, loser=losing_choice)
         new_vote.put()
         self.voteOnCategory(user, cat_name, creator_name)
@@ -60,23 +57,20 @@ class VoteCategory(webapp2.RequestHandler):
             cat_name = self.request.get('cat_name', None)
             creator_name = self.request.get('creator_name', None)
             
-            if function_type == 'vote':
-                self.voteOnCategory(user, cat_name, creator_name)
+            if function_type == 'vote': #vote on items in a particular category
+                self.voteOnCategory(user, cat_name, creator_name) 
             else:
-                self.renderingVotePage(user)
+                self.renderingVotePage(user) #display all categories the user can place votes on
         else:
             self.redirect(users.create_login_url(self.request.uri))
-            
+    
+    #display the choices that are selected randomly from the items in the category        
     def voteOnCategory(self, user, cat_name, creator_name):
-        #to_vote_category_query = db.GqlQuery('SELECT * FROM category WHERE creator = \'%s\' AND name = \'%s\'' %(user.nickname(), cat_name))
-        #to_vote_category = to_vote_category_query.get()
         items_of_category = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(creator_name, cat_name))
-        #items_of_category = items_of_category_query.get()
-        #logging.debug('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(creator_name, cat_name))
         rand_list = []
         for item in items_of_category:
             rand_list.append(item)
-        items_choices = random.sample(rand_list, 2)
+        items_choices = random.sample(rand_list, 2) #randomly select two items from the list
         
         template_values = {
                          'category' : cat_name,
