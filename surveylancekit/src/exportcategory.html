@@ -49,6 +49,7 @@
 					{% for category in all_categories %}
 					<tr>
 						<td>&nbsp&nbsp{{ category.name }}&nbsp&nbsp</td>
+						<td>&nbsp&nbsp{{ category.creator }}&nbsp&nbsp</td>
 						<td> <a href="export_category?cat_name={{ category.name }}&creator={{ category.creator }}&function=export"><i>&nbsp&nbspExport&nbsp&nbsp</i></a> </td>
 					</tr>
 					{% endfor %}

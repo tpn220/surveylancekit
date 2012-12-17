@@ -1,6 +1,9 @@
 import webapp2
 import jinja2
 import os
+import categories
+import items
+import votes
 from google.appengine.ext import db
 from google.appengine.api import users
 

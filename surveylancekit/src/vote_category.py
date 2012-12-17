@@ -5,6 +5,8 @@ import random
 from google.appengine.ext import db
 from google.appengine.api import users
 import votes
+import categories
+import items
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))

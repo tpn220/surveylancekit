@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>SurveyLance Kit : Category Result</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/css/backGroundStyle.css" />
+	<style type="text/css">
+	<!--
+		body {
+		background-color: #000000;
+	}
+	-->
+	</style>
+	<script>
+			function validateForm() {
+				var x = document.forms["categories"]["renamename"].value;
+				if (x == null || x == "") {
+					alert("New Item Name must be filled out");
+					return false;
+				}
+				if(x.trim().length == 0) {
+					alert("New Item Name invalid!!");
+					return false;
+				}
+			}
+	</script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="title"><a href="/" style="color:#FAAC58">SurveyLance Kit</a></div>
+		</div>
+		<div id="bar">
+			<div class="menuLink">
+				<a href="manage_category">Categories</a>
+			</div>
+			<div class="menuLink">
+				<a href="vote_category">Vote</a>
+			</div>
+			<div class="menuLink">
+				<a href="view_results">Results</a>
+			</div>
+			<div class="menuLink">
+				<a href="export_category">Export</a>
+			</div>
+			<div class="menuLink">
+				<a href="{{ log_out_url }}">Log Out</a>
+			</div>
+		</div>
+		<div id="pageContent">
+
+			<div class="articleTitle">Please Provide the new name for the Item</div>
+
+
+			<div class="articleContent">
+				<form name="rename" action="manage_category" onsubmit="return validateForm()" method="post"> 
+				<table border="1">
+					<tr>
+						<td>&nbsp&nbspNew Name&nbsp:&nbsp&nbsp</td>
+						<td>&nbsp&nbsp<input type="text" name="renamename"></input></td>
+					</tr>
+				</table>
+				<input type="hidden" name="renametype" value="renameitem"></input>
+				<input type="hidden" name="category" value="{{ category }}"></input>
+				<input type="hidden" name="item" value="{{ item }}"></input>
+			</div>
+
+
+		</div>
+
+	</div>
+	<div id="footer">
+		developed by Tanvi Nabar for Open
+			Source Tools
+	</div>
+
+</body>
+</html>

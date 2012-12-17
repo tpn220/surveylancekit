@@ -11,6 +11,7 @@ import logging
 import urllib2
 import xml.etree.ElementTree as ET
 
+
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
@@ -26,21 +27,28 @@ class ExportCategory(webapp2.RequestHandler):
             cat_name = self.request.get('cat_name', None)
             creator = self.request.get('creator', None)
             if function_type == "export": #if category to be exported is selected
-                #category_query = db.GqlQuery('SELECT * FROM category WHERE name = \'%s\' AND creator = \'%s\'' %(cat_name, creator))
-                xml='<?xml version="1.0" encoding="UTF-8"?>\n<site>\n'
-                xml = xml + '</site>'
-                self.response.headers['Content-Type']='text/xml; charset=utf-8'
-                self.response.out.write(xml)
+                category_items = db.GqlQuery('SELECT * FROM item WHERE creator = \'%s\' AND category = \'%s\'' %(creator, cat_name))
+                self.response.headers['Content-Type'] = 'text/xml'
+                self.response.headers['Content-Disposition'] = 'attachment; filename=download.xml'
+                self.response.out.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+                self.response.out.write('<CATEGORY>\n')
+                for cat_item in category_items:
+                    self.response.out.write('<ITEM>\n')
+                    self.response.out.write('<NAME>%s</NAME>\n' %cat_item.name)
+                    self.response.out.write('</ITEM>\n')
+                self.response.out.write('<NAME>%s</NAME>\n' %cat_name)
+                self.response.out.write('</CATEGORY>\n')
                 
-            all_categories = db.GqlQuery('SELECT * FROM category') #display all categories that the user can export
-            template_values = {
-                           'user' : user.nickname(),
-                           'log_out_url' :  users.create_logout_url("/"),
-                           'all_categories' : all_categories
-                           }
-            
-            template = jinja_environment.get_template('exportcategory.html')
-            self.response.out.write(template.render(template_values))
+            else:     
+                all_categories = db.GqlQuery('SELECT * FROM category') #display all categories that the user can export
+                template_values = {
+                               'user' : user.nickname(),
+                               'log_out_url' :  users.create_logout_url("/"),
+                               'all_categories' : all_categories
+                               }
+                
+                template = jinja_environment.get_template('exportcategory.html')
+                self.response.out.write(template.render(template_values))
     
     
 app = webapp2.WSGIApplication([('/export_category.*', ExportCategory)],
